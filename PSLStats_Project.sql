@@ -3,18 +3,21 @@
 USE PSLStats;
 
 /***********
-DROP CREATE
+ DROP
 ************/
 
 DROP TABLE IF EXISTS Game;
 DROP TABLE IF EXISTS Team;
 DROP TABLE IF EXISTS League;
 
-DROP PROCEDURE IF EXISTS DeleteLeague;
+DROP PROCEDURE IF EXISTS League;
 DROP PROCEDURE IF EXISTS InsertLeague;
 DROP PROCEDURE IF EXISTS UpdateLeague;
 DROP PROCEDURE IF EXISTS ReadGames;
 
+/***********
+ CREATE
+************/
 
 CREATE TABLE League
 (
@@ -39,6 +42,7 @@ foreign key (LeagueID) references League(LeagueID),
 TeamName varchar(255)
 );
 
+/** INDEX **/
 CREATE NONCLUSTERED INDEX idx_team_name
 ON Team (TeamName DESC);
 
