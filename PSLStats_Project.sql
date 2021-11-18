@@ -112,49 +112,43 @@ EXECUTE ReadGames @League = 'NWSL';
 GO
 
 /** UPDATE **/
-CREATE OR ALTER PROCEDURE UpdateLeague @League varchar(50) = null AS
+CREATE OR ALTER PROCEDURE UpdateLeague @FullLeagueName varchar(50), @LeagueID int AS
 
 BEGIN
 
 UPDATE League
-SET FullLeagueName = 'Womens Premier Soccer'
-WHERE LeagueID = 2;
+SET FullLeagueName = @FullLeagueName
+WHERE LeagueID = @LeagueID;
 
 END
 GO
-EXECUTE UpdateLeague;
-GO
 
-EXECUTE UpdateLeague @League = 'NWSL';
+EXECUTE UpdateLeague @FullLeagueName = 'Womens Premier Soccer', @LeagueID = 2;
 GO
 
 /** INSERT **/
-CREATE OR ALTER PROCEDURE InsertLeague @League varchar(50) = null AS
+CREATE OR ALTER PROCEDURE InsertLeague @FullLeagueName varchar(50), @ShortLeagueName varchar(10), @LeagueType varchar(10) AS
 
 BEGIN
 
 INSERT INTO League (FullLeagueName, ShortLeagueName, LeagueType)
-VALUES ('Major League Soccer','MLS','Mens');
+VALUES (@FullLeagueName,@ShortLeagueName,@LeagueType);
 
 END
 GO
-EXECUTE InsertLeague;
-GO
 
-EXECUTE InsertLeague @League = 'NWSL';
+EXECUTE InsertLeague @FullLeagueName = 'Major League Soccer', @ShortLeagueName = 'MLS', @LeagueType = 'Mens';
 GO
 
 /** DELETE **/
-CREATE OR ALTER PROCEDURE DeleteLeague @League varchar(50) = null AS
+CREATE OR ALTER PROCEDURE DeleteLeague @ShortLeagueName varchar(10) AS
 
 BEGIN
 
-DELETE FROM League WHERE ShortLeagueName = 'MLS';
+DELETE FROM League WHERE ShortLeagueName = @ShortLeagueName;
 
 END
 GO
-EXECUTE DeleteLeague;
-GO
 
-EXECUTE DeleteLeague @League = 'NWSL';
+EXECUTE DeleteLeague @ShortLeagueName = 'MLS';
 GO
