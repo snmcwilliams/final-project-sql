@@ -1,4 +1,5 @@
-# SQL Project for Code Louisville, Fall 2021 SQL course
+# SQL Project for Code Louisville
+####Fall 2021 SQL course
 
 ## Project Description
 
